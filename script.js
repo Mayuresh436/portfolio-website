@@ -1,0 +1,5 @@
+const nav=document.querySelector('.nav'),menu=document.querySelector('.menu');menu.addEventListener('click',()=>nav.classList.toggle('open'));document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const progress=document.querySelector('.progress');window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(scrollY/h*100)+'%'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+document.getElementById('shareBtn').addEventListener('click',async()=>{try{if(navigator.share){await navigator.share({title:'Mayuresh Ghuge | Portfolio',text:'Check out my portfolio',url:location.href})}else{await navigator.clipboard.writeText(location.href);toast()}}catch(e){}});
+function toast(){const t=document.getElementById('toast');t.classList.add('show-toast');setTimeout(()=>t.classList.remove('show-toast'),2200)}
